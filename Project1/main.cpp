@@ -157,13 +157,16 @@ double power(double x, double p) {
     return answer;
 }
 int main() {
-    //auto result = problems::problem2();
-    //cout << result.first << result.second;
-    double x;
-    double p;
-    std::cin >> x;
-    std::cin >> p;
-    std::cout << power(x, p);
-    return 0;
+        int a;
+    int b;
+    int c;
+    std::cout << "a = ";
+    std::cin >> a;
+    std::cout << "b = ";
+    std::cin >> b;
+    std::cout << "c = ";
+    std::cin >> c;
+    auto res = discriminant(a, b, c);
+    std:cout << "root_1 = " << res.first << ", " << "root_2 = " << res.second;
 }
 
