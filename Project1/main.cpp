@@ -1,146 +1,17 @@
-
 #include <iostream>
+#include <locale>
+#include <codecvt>
 #include <string>
+#include <io.h>
+#include <fcntl.h>
 #include <vector>
+#include "operation.hpp"
+#include "problems.hpp"
 
 using namespace std;
 
-
-namespace
-{
-    void argregatorPersolalInfo(int age, double weight) {
-
-        double height;
-        wstring name{ L"Vladislav" }, description;
-
-        wcout << "Name: " << name << "\n";
-        wcout << "Age: " << age << " Weight: "
-            << weight << endl;
-
-        {
-            wcout << "Enter height:" << endl;
-            cin >> height;
-            wcin >> description;
-        }
-    }
-
-    void argregatorPersolalInfo()
-    {
-        argregatorPersolalInfo(27, 77.3);
-    }
-}
-
-namespace problems
-{
-    // TO DO:
-    /*
-    * Äàíî òðåõçíà÷íîå íàòóðàëüíîå ÷èñëî N.
-    * Íóæíî íàéòè ñóììó öèôð ÷èñëà N
-    */
-    int problem1() {
-        int N;
-        std::cin >> N;
-        return N % 10 + (N / 10) % 10 + N / 100;
-    }
-
-    int problem1AlexR() {
-        int N;
-        std::cin >> N;
-
-        auto acc{ 0 };
-        while (N) {
-            //acc = acc + N % 10;
-            acc += N % 10;
-            N /= 10;
-        }
-
-        return acc;
-    }
-
-    int problem1Diamond() {
-        std::string number_str;
-        std::cin >> number_str;
-
-        auto it = number_str.begin();
-
-        auto acc{ 0 };
-        //for (int index = 0; index < number_str.length(); index++)
-        //    acc += number_str[index] - '0';
-
-        for (auto symbol : number_str)
-            acc += symbol - '0';
-        return acc;
-    }
-
-    std::pair<int, int> problem2() {
-        std::string n;
-        cin >> n;
-        auto index = 0, accEven = 0, accNotEven= 0;
-        for (auto symbol : n) 
-        {
-            auto number = symbol - '0';
-            if (index % 2 == 0)
-                accEven += number;
-            else
-                accNotEven += number;
-            index++;
-
-        }
-        return {accEven, accNotEven};
-        
-    }
-
-    /*
-    Íà âõîä ïîäàåòñÿ íàòóð. ÷èñëî ê.
-    Íà âõîä ïîäàåòñÿ íàòóð. ÷èñëî n.
-    È çàòåì ïîäàåòñÿ n íàòóð. ÷èñåë.
-    Íóæíî íàéòè êîë-âî ÷èñåë ðàâíûõ ê.
-    */
-
-    int promlem3() {
-        auto cnt{ 0 };
-        int k , n;
-        cin >> k >> n;
-        for (auto i = 0; i < n; i++)
-        {
-            int j;
-            std::cin >> j;
-            if (j == k)
-            {
-                cnt++;
-            }
-        }
-        return cnt;
-    }
-    /*
-    Íà âõîä ïîäàåòñÿ íàòóð. ÷èñëî n.
-    È çàòåì ïîäàåòñÿ n íàòóð. ÷èñåë.
-    Íóæíî íàéòè ñðåäíåå àðèôìåòè÷åñêîå ñðåäè âñåõ ÷èñåë êðàòíûõ 3-ì, åñëè òàêèõ ÷èñåë íåò, òî âûâåñòè -1.
-    */
-    double problem4()
-    {
-        int n;
-        cin >> n;
-        double cnt = 0.0;
-        double summa = 0.0;
-        for (int i = 0; i < n; i++)
-        {
-            int j;
-            cin >> j;
-            if (j % 3 == 0)
-            {
-                cnt += 1;
-                summa += j;
-            }
-        }
-        if (cnt == 0)
-        {
-            return -1;
-        }
-        else {
-            return summa / cnt;
-        }
-    }
+void setupRussianSimple() {
+    setlocale(LC_ALL, "rus");
 }
 //int AGE() {
     //auto age = 20.0;
@@ -151,22 +22,38 @@ namespace problems
 
 //}
 
-double power(double x, double p) {
-    double answer;
-    answer = std::pow(x,p);
-    return answer;
-}
-int main() {
-        int a;
-    int b;
-    int c;
-    std::cout << "a = ";
-    std::cin >> a;
-    std::cout << "b = ";
-    std::cin >> b;
-    std::cout << "c = ";
-    std::cin >> c;
-    auto res = discriminant(a, b, c);
-    std:cout << "root_1 = " << res.first << ", " << "root_2 = " << res.second;
-}
+//int main() {
+    //int myage = age / 10;
+    //std::cin >> age;
+    //auto agePrt = &age;
+    //auto ageFromPtr = *agePrt;
+    //int fac;
+    //std::cin >> fac;
+    //std::cout<<"fac = " << factorial(fac) << endl;
+    //std::vector<double> numbers = { 1.0, 2.0, 3.0, 4.0 };
+    //add_number(numbers, 10.0);  // numbers станет {11.0, 12.0, 13.0, 14.0}
+    //nul_number(numbers, 2.0); // numbers станет {22.0, 24.0, 26.0, 28.0}
+    //auto age = std::make_unique<double>(19); // ссылка на age
+    //auto name = std::make_shared<std::string>("Dima"); // ccылка на name
+    //std::cout << name << endl;
+//}
 
+
+//int main() {
+//    int a;
+//    int b;
+//    int c;
+//    std::cout << "a = ";
+//    std::cin >> a;
+//    std::cout << "b = ";
+//    std::cin >> b;
+//    std::cout << "c = ";
+//    std::cin >> c;
+//    auto res = discriminant(a, b, c);
+//    std:cout << "root_1 = " << res.first << ", " << "root_2 = " << res.second;
+//}
+int main() {
+    setlocale(LC_ALL, "rus");
+    auto res = problems::problem1();
+    std::cout << "Cумма цифр трехзначного числа: " << res << std::endl;
+}
