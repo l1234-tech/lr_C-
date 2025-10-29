@@ -12,6 +12,6 @@ void ex_9() {
 }
 
 int main() {
-	int res;
-	ex_9();
+	auto res = ex_13();
+	std::cout << res;
 }
