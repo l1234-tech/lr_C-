@@ -1,6 +1,8 @@
 #include <iostream>
 #include <climits>
 #include <cmath>
+#include <string>
+#include <vector>
 
 int ex_5() {
 	int N;
@@ -73,7 +75,76 @@ int ex_7() {
 
 }
 
-int ex_8() {
-	return 0;
+std::string ex_8() {
+	std::string str;
+	std::cin >> str;
+	for (int i = 0; i < str.length(); i++) {
+		if (str[i] == 'G') 
+			str[i] = 'C';
+		else if (str[i] == 'C') 
+			str[i] = 'G';
+		else if (str[i] == 'A') 
+			str[i] = 'T';
+		else if (str[i] == 'T') 
+			str[i] = 'A';
+	}
+	return str;
 }
 
+int	ex_10() {
+	int N;
+	std::cin >> N;
+	std::vector<int> massiv(N, 0);
+	for (int i = 0; i < N; i++) {
+		int j;
+		std::cin >> j;
+		massiv.insert(massiv.begin() + i, j);
+	}
+	int max_of_massiv = 0;
+	int* p = 0;
+	p = &max_of_massiv;
+	for (int i = 0; i < massiv.size(); i++) {
+		if (massiv[i] > max_of_massiv) *p = massiv[i];
+	}
+	return *p;
+}
+
+int ex_11() {
+	int N;
+	std::cin >> N;
+	int cnt = 0;
+	for (int i = 0; i < N; i++) {
+		int j;
+		std::cin >> j;
+		if (j > 0) {
+			cnt++;
+		}
+	}
+	return cnt;
+}
+
+int ex_13() {
+	int index = 0;
+	int cnt = 0;
+	std::vector<int> massiv(50, 0);
+	while (true) {
+		int num;
+		std::cin >> num;
+		if (num == 0) break;
+		else
+		massiv.insert(massiv.begin() + index, num);
+		index++;
+	}
+	int max_of_massiv = 0;
+	int* p = 0;
+	p = &max_of_massiv;
+	for (int i = 0; i < massiv.size(); i++) {
+		if (massiv[i] > max_of_massiv) *p = massiv[i];
+	}
+	for (int i = 0; i < massiv.size(); i++) {
+		if (massiv[i] == max_of_massiv) {
+			cnt++;
+		}
+	}
+	return cnt;
+}
