@@ -5,7 +5,9 @@
 int ex_5();
 int ex_6();
 int ex_7();
-int ex_8();
-
+std::string ex_8();
+int ex_10();
+int ex_11();
+int ex_13();
 
 #endif
