@@ -91,6 +91,18 @@ std::string ex_8() {
 	return str;
 }
 
+namespace ex_9 {
+	void ex_9() {
+		int N;
+		std::cin >> N;
+		int power_of_2 = 1;
+		while (power_of_2 <= N) {
+			std::cout << power_of_2 << " ";
+			power_of_2 *= 2;
+		}
+	}
+}
+
 int	ex_10() {
 	int N;
 	std::cin >> N;
@@ -121,6 +133,20 @@ int ex_11() {
 		}
 	}
 	return cnt;
+}
+
+int ex_12() {
+	int n;
+	std::cin >> n;
+	int summa = 0;
+	for (int i = 0; i < n; i++) {
+		int number;
+		std::cin >> number;
+		if (number > 9 && number < 100 && number % 8 == 0) {
+			summa += number;
+		}
+	}
+	return summa;
 }
 
 int ex_13() {
