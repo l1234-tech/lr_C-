@@ -6,8 +6,13 @@ int ex_5();
 int ex_6();
 int ex_7();
 std::string ex_8();
+namespace ex_9 {
+	void ex_9();
+}
 int ex_10();
 int ex_11();
+int ex_12();
 int ex_13();
+int ex_14();
 
 #endif
