@@ -13,6 +13,8 @@ int ex_10();
 int ex_11();
 int ex_12();
 int ex_13();
-int ex_14();
+namespace ex_14 {
+	void ex_14();
+}
 
 #endif
