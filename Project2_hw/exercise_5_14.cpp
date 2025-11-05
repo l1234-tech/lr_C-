@@ -174,3 +174,19 @@ int ex_13() {
 	}
 	return cnt;
 }
+
+namespace ex_14 {
+	void ex_14() {
+		int a;
+		int b;
+		std::cin >> a >> b;
+		std::string std_a = std::to_string(a);
+		std::string std_b = std::to_string(b);
+		for (char firts_digit : std_a) {
+			if (std_b.find(firts_digit) != std::string::npos) {
+				std::cout << firts_digit << " ";
+			}
+			std_b.erase(std_b.find(firts_digit), 1);
+		}
+	}
+}
