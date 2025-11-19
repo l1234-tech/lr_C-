@@ -48,7 +48,7 @@ namespace Labs
 		Vector operator+(const Vector& other) const;
 		Vector operator-(const Vector& other) const;
 		double operator*(const Vector& other) const;
-		//скалярное произведение
+		//СЃРєР°Р»СЏСЂРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ 
 
 		void print_vector() const;
 
@@ -57,5 +57,6 @@ namespace Labs
 		void print_prod (const Vector& other) const;
 	};
 }
+
 
 #endif
