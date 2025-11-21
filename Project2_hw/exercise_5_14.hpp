@@ -16,5 +16,6 @@ int ex_13();
 namespace ex_14 {
 	void ex_14();
 }
+int NOD(int a, int b);
 
 #endif
