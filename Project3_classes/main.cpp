@@ -112,9 +112,7 @@ int main() {
 	// auto res_vec = vec1 + vec2;
 	// res_vec.print_vector();
 	//std::cout << res_vec;
-
 	auto vk = Labs::Company(50);
-    
     vk.create_director(
         "Владимир",
         "Кириенко",
@@ -136,8 +134,18 @@ int main() {
         6
     );
 
-	// vk.setProfit(145.12);
-	// auto director = vk.director();
-    // std::cout << "После первой выплаты: " 
-    //           << (director->checkPromises() ? "true" : "false") << std::endl;
+	vk.setProfit(145.12);
+	vk.fulfillPromise();
+	auto director = vk.director();
+    std::cout << "After fist iter, have director a salary ?: " 
+              << (director->checkPromises() ? "true" : "false") << std::endl;
+
+	std::cout << "After fist iter, all of emp salaries is given ?: " 
+              << (vk.check_all_Promises() ? "true" : "false") << std::endl;
+
+	vk.setProfit(-200.0);
+    vk.fulfillPromise(); // Не хватает денег, возвращает false
+    
+    std::cout << "After second iter, have director a salary ?: " 
+              << (director->checkPromises() ? "true" : "false") << std::endl;
 }

@@ -1,7 +1,11 @@
 #ifndef IRR_NUMBER_HPP
 #define IRR_NUMBER_HPP
+
 #include <cmath>
 #include <vector>
+#include <iostream> 
+#include <memory>
+#include <string>
 
 namespace Labs
 {
@@ -91,44 +95,95 @@ namespace Labs
 		std::string get_second_name() const {return second_name;}
 
 		int get_id() const {return id;}
-		bool chackPromises() const {
+		bool checkPromises() const {
 			return promise -> getIsPaid();
 		}
+		std::shared_ptr<Promise> getPromise() const { return promise; }
 	};
-	class Director : public Labs::Employee{
+	class Director : public Employee{
 	public:
 		Director (const std::string& first, const std::string& second, int id, double salary) 
-		: Labs::Employee(first, second , id, salary){}
+		: Employee(first, second , id, salary){}
 	};
 
 	class Company {
 	private:
 		double balance;
-		std::shared_ptr<Labs::Director>Director_of_Company;
-		std::vector<std::shared_ptr<Labs::Employee>> employees;
+		std::shared_ptr<Director>Director_of_Company;
+		std::vector<std::shared_ptr<Employee>> employees;
 	public:
 		Company(double all_balance = 0) : balance(all_balance){}
 
 		void create_director(const std::string& first, const std::string& second, int id, double salary) {
-			Director_of_Company = std::make_shared<Labs::Director>(first, second, id, salary);
+			Director_of_Company = std::make_shared<Director>(first, second, id, salary);
 		}
 
 		void create_Employee(const std::string& first, const std::string& second, int id, double salary){
-			employees.push_back(std::make_shared<Labs::Employee>(first, second, id, salary));
+			employees.push_back(std::make_shared<Employee>(first, second, id, salary));
 		}
 		void setProfit(double profit){
 			balance += profit;
 		}
 
-		std::shared_ptr<Labs::Director> director() const{
+		std::shared_ptr<Director> director() const{
 			return Director_of_Company;
 		}
 
 		double getBalance() const {
         	return balance;
     	}
+
+		bool fulfillPromise() {
+			double total_salary = 0.0;
+
+			if (Director_of_Company){
+				total_salary += Director_of_Company->getPromise()->get_salary();
+			}
+
+			for (const auto& employee : employees){
+				total_salary += employee->getPromise()->get_salary();
+			}
+
+			if (balance >= total_salary){
+				balance -= total_salary;
+				
+				if (Director_of_Company){
+					Director_of_Company->getPromise()->give_salary_to_user();
+				}
+				
+				for (const auto& employee : employees){
+					employee->getPromise()->give_salary_to_user();
+				}
+
+				return true;
+			}
+			else{
+				if (Director_of_Company){
+					Director_of_Company->getPromise()->reset_salary_to_user();
+				}
+				
+				for (const auto& employee : employees){
+					employee->getPromise()->reset_salary_to_user();
+				}
+				
+				return false;
+			}
+		}
+		bool check_all_Promises() const {
+		if (Director_of_Company && !Director_of_Company->checkPromises()) {
+			return false;
+		}
+		
+		for (const auto& employee : employees) {
+			if (!employee->checkPromises()) {
+				return false;
+			}
+		}
+		
+		return true;
+		}
 	}; 
-};
+}
 
 
 #endif
