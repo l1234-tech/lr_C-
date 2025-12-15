@@ -104,12 +104,40 @@ namespace Labs
 }
 
 int main() {
-	auto r1 = Labs::ComplexNumber();
-	auto r2 = Labs::ComplexNumber(2, 3);
-	auto res = r1 / r2;
-	auto vec1 = Labs::Vector(1, 1, 1);
-	auto vec2 = Labs::Vector(1, 2, 3);
-	auto res_vec = vec1 + vec2;
-	res_vec.print_vector();
+	// auto r1 = Labs::ComplexNumber();
+	// auto r2 = Labs::ComplexNumber(2, 3);
+	// auto res = r1 / r2;
+	// auto vec1 = Labs::Vector(1, 1, 1);
+	// auto vec2 = Labs::Vector(1, 2, 3);
+	// auto res_vec = vec1 + vec2;
+	// res_vec.print_vector();
 	//std::cout << res_vec;
+
+	auto vk = Labs::Company(50);
+    
+    vk.create_director(
+        "Владимир",
+        "Кириенко",
+        1,
+        15
+    );
+    
+    vk.create_Employee(
+        "Елена",
+        "Иванова",
+        2,
+        8
+    );
+    
+    vk.create_Employee(
+        "Виктор",
+        "Кузнецов",
+        3,
+        6
+    );
+
+	// vk.setProfit(145.12);
+	// auto director = vk.director();
+    // std::cout << "После первой выплаты: " 
+    //           << (director->checkPromises() ? "true" : "false") << std::endl;
 }
